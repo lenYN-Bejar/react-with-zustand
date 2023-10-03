@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "name": "Yazman Rodriguez",
+        "email": "Yazman@gmail.com",
+        "github": "YazmanRodriguez"
+    },
+    {
+        "id": "2",
+        "name": "Jhon Doe",
+        "email": "Jhon@gmail.com",
+        "github": "JhonDoe"
+    },
+    {
+        "id": "3",
+        "name": "Amelia Jones",
+        "email": "Amelia@gmail.com",
+        "github": "AmeliaJones"
+    }
+]
