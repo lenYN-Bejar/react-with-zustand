@@ -21,7 +21,19 @@ interface State {
 
 // addNewUser, deleteUserById, rollbackUser
 
-export const useUsersStore = create<State>()(persist((set, get) => {
+const syncWithDatabaseMiddleware = (config) => (set, get, api) => {
+  return config(
+    (...args) => {
+      console.log('appying', args)
+      set(...args)
+      console.log('new State', get())
+    },
+    get,
+    api
+  )
+}
+
+export const useUsersStore = create<State>()(syncWithDatabaseMiddleware(persist((set, get) => {
   return {
     users: [],
 
@@ -37,7 +49,7 @@ export const useUsersStore = create<State>()(persist((set, get) => {
     },
 
     addNewUser: (user: User) => {
-      console.log(user)
+      console.log(user, 'user')
       const { users } = get()
       const id = crypto.randomUUID()
       set({ users: [...users, { id, ...user }] })
@@ -45,4 +57,4 @@ export const useUsersStore = create<State>()(persist((set, get) => {
   }
 }, {
   name: 'users'
-}))
+})))
